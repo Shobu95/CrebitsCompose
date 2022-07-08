@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose
+package com.shobu95.crebitscompose.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
