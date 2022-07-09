@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CrebitsCompose"
         tools:targetApi="31">
         <activity
-            android:name=".ui.screens.HomeActivity"
+            android:name=".ui.screens.home.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.CrebitsCompose" />

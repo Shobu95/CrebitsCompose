@@ -1,0 +1,29 @@
+package com.shobu95.crebitscompose.ui.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.shobu95.crebitscompose.ui.screens.home.dashboard.DashboardScreen
+import com.shobu95.crebitscompose.ui.screens.home.settings.SettingsScreen
+import com.shobu95.crebitscompose.ui.screens.home.transactions.TransactionsScreen
+
+@Composable
+fun HomeNavigationGraph(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        startDestination = HomeScreenItem.Dashboard.route) {
+
+        composable(HomeScreenItem.Dashboard.route) {
+            DashboardScreen()
+        }
+
+        composable(HomeScreenItem.Transactions.route) {
+            TransactionsScreen()
+        }
+
+        composable(HomeScreenItem.Settings.route) {
+            SettingsScreen()
+        }
+    }
+}

@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import com.shobu95.crebitscompose.R
+import com.shobu95.crebitscompose.ui.screens.home.HomeActivity
 import com.shobu95.crebitscompose.ui.theme.CrebitsComposeTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
