@@ -54,5 +54,4 @@ fun HomeBottomNavBar(
             )
         }
     }
-
 }

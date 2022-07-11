@@ -12,7 +12,7 @@ import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
 @Composable
 fun DashboardScreen(@StringRes title: Int) {
     Scaffold(
-        topBar = { CrebitsTopAppBar(title = stringResource(id = title)) }
+        topBar = { CrebitsTopAppBar(title = stringResource(id = title), false) {} }
     ) {
 
     }

@@ -24,6 +24,13 @@ sealed class HomeScreenItem(
             "transactions"
         )
 
+    object AddTransaction :
+        HomeScreenItem(
+            R.string.title_add_transactions_screen,
+            R.drawable.ic_transactions,
+            "transactions-add"
+        )
+
     object Settings :
         HomeScreenItem(
             R.string.title_settings_screen,
