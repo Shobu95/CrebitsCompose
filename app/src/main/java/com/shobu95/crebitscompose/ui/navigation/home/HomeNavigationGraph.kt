@@ -15,15 +15,15 @@ fun HomeNavigationGraph(navController: NavHostController) {
         startDestination = HomeScreenItem.Dashboard.route) {
 
         composable(HomeScreenItem.Dashboard.route) {
-            DashboardScreen()
+            DashboardScreen(HomeScreenItem.Dashboard.title)
         }
 
         composable(HomeScreenItem.Transactions.route) {
-            TransactionsScreen()
+            TransactionsScreen(HomeScreenItem.Transactions.title)
         }
 
         composable(HomeScreenItem.Settings.route) {
-            SettingsScreen()
+            SettingsScreen(HomeScreenItem.Settings.title)
         }
     }
 }

@@ -1,29 +1,24 @@
 package com.shobu95.crebitscompose.ui.screens.home.settings
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
+import androidx.annotation.StringRes
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
+import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
 
 @Composable
-fun SettingsScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.White),
-        contentAlignment = Alignment.Center
+fun SettingsScreen(@StringRes title: Int) {
+    Scaffold(
+        topBar = { CrebitsTopAppBar(title = stringResource(id = title)) }
     ) {
-        Text(text = "Settings")
+
     }
 }
 
 @Preview
 @Composable
 fun SettingsPreview() {
-    SettingsScreen()
+    SettingsScreen(HomeScreenItem.Settings.title)
 }
