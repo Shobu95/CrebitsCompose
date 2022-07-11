@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CrebitsCompose</string>
+    <string name="app_name">Crebits</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_dashboard_screen">Dashboard</string>
     <string name="title_transactions_screen">Transactions</string>

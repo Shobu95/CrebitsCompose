@@ -6,13 +6,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
+import com.shobu95.crebitscompose.R
 import com.shobu95.crebitscompose.ui.navigation.HomeNavigationGraph
 import com.shobu95.crebitscompose.ui.theme.CrebitsComposeTheme
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.window.statusBarColor = ContextCompat.getColor(this, R.color.black)
         setContent {
             CrebitsComposeTheme {
                HomeScreen()

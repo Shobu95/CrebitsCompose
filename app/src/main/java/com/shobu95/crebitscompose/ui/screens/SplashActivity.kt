@@ -7,10 +7,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,7 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.shobu95.crebitscompose.R
 import com.shobu95.crebitscompose.ui.screens.home.HomeActivity
@@ -30,6 +31,7 @@ import kotlinx.coroutines.launch
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.window.statusBarColor = ContextCompat.getColor(this, R.color.black)
         setContent {
             CrebitsComposeTheme {
                 // A surface container using the 'background' color from the theme
@@ -42,7 +44,7 @@ class SplashActivity : ComponentActivity() {
         }
     }
 
-    fun navigateToHome(context: Context) {
+    private fun navigateToHome(context: Context) {
         lifecycleScope.launch {
             delay(3000)
             val intent = Intent(this@SplashActivity, HomeActivity::class.java)
@@ -68,21 +70,12 @@ fun SplashScreen() {
             .background(color = Color.White),
         contentAlignment = Alignment.Center
     ) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            val splashIcon = painterResource(id = R.drawable.ic_android_blue)
-            Image(
-                painter = splashIcon,
-                contentDescription = "splash icon",
-                Modifier.size(40.dp)
-            )
-            Text(
-                text = "CreBits",
-                color = Color.Black,
-                fontSize = 28.sp
-            )
-        }
+        val splashIcon = painterResource(id = R.drawable.crebits_main_icon)
+        Image(
+            painter = splashIcon,
+            contentDescription = "splash icon",
+            Modifier.size(140.dp)
+        )
+
     }
 }
