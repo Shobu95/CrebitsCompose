@@ -62,13 +62,14 @@ fun AddTransactionBody() {
     Column(
         modifier = Modifier.padding(14.dp)
     ) {
+
         CustomRadioGroup()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
 
         EnterAmountTextField()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
 
-        TimeAndDateSelector()
+        TimeAndDateSelectors()
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
 
         EnterDescriptionTextArea()
@@ -136,7 +137,7 @@ fun EnterAmountTextField() {
 }
 
 @Composable
-fun TimeAndDateSelector() {
+fun TimeAndDateSelectors() {
     Row(Modifier.fillMaxWidth()) {
 
         TimePickerField(
@@ -166,7 +167,6 @@ fun TimePickerField(modifier: Modifier) {
         modifier = modifier
     )
 }
-
 
 @Composable
 fun DatePickerField(modifier: Modifier) {
