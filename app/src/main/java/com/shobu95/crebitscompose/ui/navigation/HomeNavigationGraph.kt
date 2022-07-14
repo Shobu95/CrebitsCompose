@@ -7,7 +7,6 @@ import androidx.navigation.compose.composable
 import com.shobu95.crebitscompose.ui.screens.home.dashboard.DashboardScreen
 import com.shobu95.crebitscompose.ui.screens.home.settings.SettingsScreen
 import com.shobu95.crebitscompose.ui.screens.home.transactions.AddTransactionScreen
-import com.shobu95.crebitscompose.ui.screens.home.transactions.TransactionFormState
 import com.shobu95.crebitscompose.ui.screens.home.transactions.TransactionsScreen
 
 @Composable
@@ -26,8 +25,7 @@ fun HomeNavigationGraph(navController: NavHostController) {
         }
 
         composable(HomeScreenItem.AddTransaction.route) {
-            AddTransactionScreen(HomeScreenItem.AddTransaction.title,
-                TransactionFormState.ADD) { navController.popBackStack() }
+            AddTransactionScreen(HomeScreenItem.AddTransaction.title) { navController.popBackStack() }
         }
 
         composable(HomeScreenItem.Settings.route) {

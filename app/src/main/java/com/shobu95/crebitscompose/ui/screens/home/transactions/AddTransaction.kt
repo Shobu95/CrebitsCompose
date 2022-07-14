@@ -2,7 +2,6 @@ package com.shobu95.crebitscompose.ui.screens.home.transactions
 
 import android.os.Build
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -33,17 +32,14 @@ import java.time.LocalDate
 @Composable
 fun AddEditTransactionScreenPreview() {
     AddTransactionScreen(
-        HomeScreenItem.AddTransaction.title,
-        formState = TransactionFormState.ADD
+        HomeScreenItem.AddTransaction.title
     ) {}
 }
 
 
 @Composable
 fun AddTransactionScreen(
-    @StringRes title: Int,
-    formState: TransactionFormState,
-    onBackPressed: () -> Unit,
+    @StringRes title: Int, onBackPressed: () -> Unit,
 ) {
     Scaffold(
         backgroundColor = ThemeBackground,
@@ -100,14 +96,6 @@ fun CustomRadioGroup() {
                 contentAlignment = Center,
                 modifier = Modifier
                     .weight(1F)
-                    .padding(horizontal = 2.dp)
-                    .background(
-                        if (text == selectedOption) {
-                            Color.Black
-                        } else {
-                            Color.LightGray
-                        }
-                    )
                     .clickable {
                         onSelectionChange(text)
                     }
@@ -137,6 +125,7 @@ fun EnterAmountTextField() {
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
     )
 }
+
 
 @Composable
 fun TimeAndDateSelectors() {
@@ -189,6 +178,11 @@ fun DatePickerField(modifier: Modifier) {
     }
 }
 
+
+val descTextModifier = Modifier
+    .fillMaxWidth()
+    .height(120.dp)
+
 @Composable
 fun EnterDescriptionTextArea() {
     var description by remember { mutableStateOf("") }
@@ -197,18 +191,23 @@ fun EnterDescriptionTextArea() {
         value = description,
         onValueChange = { description = it },
         label = { Text(text = "Description") },
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(120.dp),
+        modifier = descTextModifier,
         maxLines = 5,
     )
 }
 
+
+val boxModifier = Modifier
+    .fillMaxHeight()
+    .padding(bottom = 10.dp)
+
+val buttonModifier = Modifier
+    .fillMaxWidth()
+    .height(46.dp)
+
 @Composable
 fun SaveButton() {
-    Box(modifier = Modifier
-        .fillMaxHeight()
-        .padding(bottom = 10.dp)) {
+    Box(modifier = boxModifier) {
         Button(
             onClick = {},
             shape = RectangleShape,
@@ -216,10 +215,7 @@ fun SaveButton() {
                 backgroundColor = ThemeBlack,
                 contentColor = ThemeWhite
             ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(46.dp)
-                .align(BottomCenter)
+            modifier = buttonModifier.align(BottomCenter),
         ) {
             Text(text = "Save")
         }
