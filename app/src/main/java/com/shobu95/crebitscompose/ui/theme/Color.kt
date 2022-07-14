@@ -10,3 +10,4 @@ val Teal200 = Color(0xFF03DAC5)
 val ThemeBlack = Color.Black
 val ThemeWhite = Color.White
 val ThemeBackground = Color(0xfafafaff)
+val ThemeGreen = Color(0x1faa00FF)
