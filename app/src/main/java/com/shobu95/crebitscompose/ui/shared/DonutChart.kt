@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 @Preview
 @Composable
 fun CrebitsDonutChartPrev() {
-    CrebitsDonutChart(
+    DonutChart(
         points = listOf(40f, 60f),
         colors = listOf(Color.Black, Color.LightGray),
         modifier = Modifier.size(250.dp)
@@ -22,7 +22,7 @@ fun CrebitsDonutChartPrev() {
 }
 
 @Composable
-fun CrebitsDonutChart(
+fun DonutChart(
     points: List<Float>,
     colors: List<Color>,
     modifier: Modifier,

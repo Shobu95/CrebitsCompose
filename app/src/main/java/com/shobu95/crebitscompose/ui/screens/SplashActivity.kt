@@ -74,7 +74,7 @@ fun SplashScreen() {
         Image(
             painter = splashIcon,
             contentDescription = "splash icon",
-            Modifier.size(140.dp)
+            Modifier.size(180.dp)
         )
 
     }

@@ -1,6 +1,6 @@
 package com.shobu95.crebitscompose.ui.screens.home.dashboard
 
-import CrebitsDonutChart
+import DonutChart
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -50,7 +50,7 @@ fun DashboardBody() {
             .fillMaxSize()
             .padding(14.dp)
     ) {
-        CrebitsDonutChart(
+        DonutChart(
             points = listOf(40f, 60f),
             colors = listOf(Color.Black, Color.LightGray),
             modifier = Modifier.size(300.dp)

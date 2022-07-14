@@ -1,13 +1,10 @@
 package com.shobu95.crebits.backend.local
 
 import androidx.room.*
-import com.shobu95.crebits.model.TransactionData
-import com.shobu95.crebits.utils.Constants
+import com.shobu95.crebitscompose.data.model.TransactionData
 import kotlinx.coroutines.flow.Flow
 
-/**
- * @author AliAzazAlam on 10/29/2021.
- */
+
 @Dao
 interface TransactionDatabaseDao {
 
@@ -20,10 +17,10 @@ interface TransactionDatabaseDao {
     @Update
     fun update(transactionData: TransactionData): Int
 
-    @Query("SELECT * FROM ${Constants.TRANSACTION_TABLE} ORDER BY id DESC")
+    @Query("SELECT * FROM transaction_table ORDER BY id DESC")
     fun getAll(): Flow<List<TransactionData>>
 
-    @Query("SELECT * FROM ${Constants.TRANSACTION_TABLE} WHERE id = :id")
+    @Query("SELECT * FROM transaction_table WHERE id = :id")
     fun getById(id: Int): TransactionData?
 
     @Delete
