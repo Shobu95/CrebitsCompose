@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
+import com.shobu95.crebitscompose.ui.theme.ThemeBackground
 import com.shobu95.crebitscompose.ui.theme.ThemeBlack
 import com.shobu95.crebitscompose.ui.theme.ThemeWhite
 
@@ -26,7 +27,13 @@ fun TransactionsPreview() {
 @Composable
 fun TransactionsScreen(@StringRes title: Int, onAddClick: () -> Unit) {
     Scaffold(
-        topBar = { CrebitsTopAppBar(title = stringResource(id = title), false) {} },
+        backgroundColor = ThemeBackground,
+        topBar = {
+            CrebitsTopAppBar(
+                title = stringResource(id = title),
+                false
+            ) {}
+        },
         floatingActionButton = { AddTransactionFab(onAddClick) },
         floatingActionButtonPosition = FabPosition.End
     ) {

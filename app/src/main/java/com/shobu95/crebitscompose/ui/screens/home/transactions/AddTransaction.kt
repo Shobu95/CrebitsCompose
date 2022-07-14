@@ -24,6 +24,7 @@ import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.shared.CrebitsDatePicker
 import com.shobu95.crebitscompose.ui.shared.CrebitsTimePicker
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
+import com.shobu95.crebitscompose.ui.theme.ThemeBackground
 import com.shobu95.crebitscompose.ui.theme.ThemeBlack
 import com.shobu95.crebitscompose.ui.theme.ThemeWhite
 import java.time.LocalDate
@@ -45,6 +46,7 @@ fun AddTransactionScreen(
     onBackPressed: () -> Unit,
 ) {
     Scaffold(
+        backgroundColor = ThemeBackground,
         topBar = {
             CrebitsTopAppBar(
                 title = stringResource(id = title),
