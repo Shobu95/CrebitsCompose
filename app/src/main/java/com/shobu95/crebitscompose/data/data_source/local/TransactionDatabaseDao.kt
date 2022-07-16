@@ -6,24 +6,24 @@ import kotlinx.coroutines.flow.Flow
 
 
 @Dao
-interface TransactionDatabaseDao {
+interface TransactionDao {
 
     /*
     * Transaction
     * */
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(transactionData: TransactionData): Long
+    suspend fun insert(transactionData: TransactionData)
 
     @Update
-    fun update(transactionData: TransactionData): Int
+    suspend fun update(transactionData: TransactionData)
 
-    @Query("SELECT * FROM transaction_table ORDER BY id DESC")
+    @Query("SELECT * FROM transaction_table")
     fun getAll(): Flow<List<TransactionData>>
 
     @Query("SELECT * FROM transaction_table WHERE id = :id")
-    fun getById(id: Int): TransactionData?
+    suspend fun getById(id: Int): TransactionData?
 
     @Delete
-    fun delete(transactionData: TransactionData)
+    suspend fun delete(transactionData: TransactionData)
 
 }

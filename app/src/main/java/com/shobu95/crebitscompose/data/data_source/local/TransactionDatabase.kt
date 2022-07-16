@@ -6,9 +6,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.shobu95.crebitscompose.data.model.TransactionData
 
-/**
- * @author AliAzazAlam on 10/29/2021.
- */
 @Database(
     entities = [TransactionData::class],
     version = 1,
@@ -16,7 +13,7 @@ import com.shobu95.crebitscompose.data.model.TransactionData
 )
 abstract class TransactionDatabase : RoomDatabase() {
 
-    abstract fun vehicleDao(): TransactionDatabaseDao
+    abstract val transactionDao: TransactionDao
 
     companion object {
         @Volatile
