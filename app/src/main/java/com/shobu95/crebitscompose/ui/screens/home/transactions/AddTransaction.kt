@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.shobu95.crebitscompose.domain.convertTo12Hour
 import com.shobu95.crebitscompose.domain.getCurrentHourMinute
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
@@ -58,12 +59,12 @@ fun AddTransactionScreen(
 }
 
 @Composable
-fun AddTransactionBody() {
+fun AddTransactionBody(myViewModel: TransactionViewModel = viewModel()) {
     Column(
         modifier = Modifier.padding(14.dp)
     ) {
 
-        CustomRadioGroup()
+        CustomRadioGroup(myViewModel.uiState.transaction.type)
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
 
         EnterAmountTextField()
@@ -80,7 +81,7 @@ fun AddTransactionBody() {
 }
 
 @Composable
-fun CustomRadioGroup() {
+fun CustomRadioGroup(typeState: String?) {
     val options = listOf("Credit", "Debit")
 
     var selectedOption by remember {
