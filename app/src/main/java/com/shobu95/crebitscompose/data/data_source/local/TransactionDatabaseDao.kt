@@ -1,7 +1,7 @@
 package com.shobu95.crebits.backend.local
 
 import androidx.room.*
-import com.shobu95.crebitscompose.data.model.TransactionData
+import com.shobu95.crebitscompose.domain.model.TransactionData
 import kotlinx.coroutines.flow.Flow
 
 

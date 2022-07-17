@@ -14,7 +14,9 @@ import androidx.navigation.compose.rememberNavController
 import com.shobu95.crebitscompose.R
 import com.shobu95.crebitscompose.ui.navigation.HomeNavigationGraph
 import com.shobu95.crebitscompose.ui.theme.CrebitsComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

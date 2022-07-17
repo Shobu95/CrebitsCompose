@@ -8,7 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
@@ -18,79 +19,102 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.shobu95.crebitscompose.domain.convertTo12Hour
-import com.shobu95.crebitscompose.domain.getCurrentHourMinute
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
+import com.shobu95.crebitscompose.ui.screens.home.transactions.state.TextFieldState
 import com.shobu95.crebitscompose.ui.shared.CrebitsDatePicker
 import com.shobu95.crebitscompose.ui.shared.CrebitsTimePicker
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
 import com.shobu95.crebitscompose.ui.theme.ThemeBackground
 import com.shobu95.crebitscompose.ui.theme.ThemeBlack
 import com.shobu95.crebitscompose.ui.theme.ThemeWhite
-import java.time.LocalDate
+import kotlinx.coroutines.flow.collectLatest
 
 @Preview
 @Composable
 fun AddEditTransactionScreenPreview() {
-    AddTransactionScreen(
+    AddEditTransactionScreen(
         HomeScreenItem.AddTransaction.title,
     ) {}
 }
 
 
 @Composable
-fun AddTransactionScreen(
+fun AddEditTransactionScreen(
     @StringRes title: Int,
-    onBackPressed: () -> Unit,
+    viewModel: AddEditTransactionViewModel = hiltViewModel(),
+    navigateBack: () -> Unit,
 ) {
+
+    val scaffoldState = rememberScaffoldState()
+
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collectLatest { event ->
+            when (event) {
+
+                is AddEditTransactionViewModel.UiEvent.SaveTransaction -> {
+                    navigateBack()
+                }
+
+                is AddEditTransactionViewModel.UiEvent.ShowSnackBar -> {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        message = event.message
+                    )
+                }
+            }
+        }
+    }
+
     Scaffold(
+        scaffoldState = scaffoldState,
         backgroundColor = ThemeBackground,
         topBar = {
             CrebitsTopAppBar(
                 title = stringResource(id = title),
                 true,
-                onBackPressed
+                navigateBack
             )
         },
     ) {
-        AddTransactionBody()
+        AddTransactionBody(viewModel)
     }
 }
 
 @Composable
-fun AddTransactionBody(myViewModel: TransactionViewModel = viewModel()) {
+fun AddTransactionBody(viewModel: AddEditTransactionViewModel) {
     Column(
         modifier = Modifier.padding(14.dp)
     ) {
 
-        CustomRadioGroup(myViewModel.uiState.transaction.type)
+        val typeState = viewModel.type.value
+        val amountState = viewModel.amountText.value
+        val timeState = viewModel.timeText.value
+        val dateState = viewModel.dateText.value
+        val descState = viewModel.descText.value
+
+        CustomRadioGroup(typeState, viewModel)
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
 
-        EnterAmountTextField()
+        EnterAmountTextField(amountState, viewModel)
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
 
-        TimeAndDateSelectors()
+        TimeAndDateSelectors(timeState, dateState, viewModel)
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
 
-        EnterDescriptionTextArea()
+        EnterDescriptionTextArea(descState, viewModel)
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
 
-        SaveButton()
+        SaveButton(viewModel)
     }
 }
 
 @Composable
-fun CustomRadioGroup(typeState: String?) {
+fun CustomRadioGroup(typeState: String, viewModel: AddEditTransactionViewModel) {
+
     val options = listOf("Credit", "Debit")
 
-    var selectedOption by remember {
-        mutableStateOf("")
-    }
     val onSelectionChange = { text: String ->
-        selectedOption = text
-
-
+        viewModel.onEvent(AddEditTransactionEvent.ChangeType(text))
     }
 
     Row(Modifier
@@ -103,7 +127,7 @@ fun CustomRadioGroup(typeState: String?) {
                     .weight(1F)
                     .padding(horizontal = 2.dp)
                     .background(
-                        if (text == selectedOption) {
+                        if (text == typeState) {
                             Color.Black
                         } else {
                             Color.LightGray
@@ -127,12 +151,13 @@ fun CustomRadioGroup(typeState: String?) {
 }
 
 @Composable
-fun EnterAmountTextField() {
-    var amount by remember { mutableStateOf("") }
+fun EnterAmountTextField(amountState: TextFieldState, viewModel: AddEditTransactionViewModel) {
 
     OutlinedTextField(
-        value = amount,
-        onValueChange = { amount = it },
+        value = amountState.text,
+        onValueChange = {
+            viewModel.onEvent(AddEditTransactionEvent.EnteredAmount(it))
+        },
         label = { Text(text = "Amount") },
         modifier = Modifier.fillMaxWidth(),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
@@ -141,16 +166,24 @@ fun EnterAmountTextField() {
 
 
 @Composable
-fun TimeAndDateSelectors() {
+fun TimeAndDateSelectors(
+    timeState: TextFieldState,
+    dateState: TextFieldState,
+    viewModel: AddEditTransactionViewModel,
+) {
     Row(Modifier.fillMaxWidth()) {
 
         TimePickerField(
+            timeState = timeState,
+            viewModel = viewModel,
             modifier = Modifier
                 .weight(1F)
                 .padding(end = 3.dp)
         )
 
         DatePickerField(
+            dateState = dateState,
+            viewModel = viewModel,
             modifier = Modifier
                 .weight(1F)
                 .padding(start = 3.dp)
@@ -159,50 +192,72 @@ fun TimeAndDateSelectors() {
 }
 
 @Composable
-fun TimePickerField(modifier: Modifier) {
-    val (mHour, mMinute) = getCurrentHourMinute()
-    val mTime = remember {
-        mutableStateOf(convertTo12Hour("$mHour:$mMinute"))
-    }
+fun TimePickerField(
+    modifier: Modifier,
+    timeState: TextFieldState,
+    viewModel: AddEditTransactionViewModel,
+) {
+//    val (mHour, mMinute) = getCurrentHourMinute()
+//    val mTime = remember {
+//        mutableStateOf(convertTo12Hour("$mHour:$mMinute"))
+//    }
+//
+//    // set current time by default
+//    viewModel.onEvent(AddEditTransactionEvent.EnteredTime(mTime.value))
 
     CrebitsTimePicker(
-        value = mTime.value,
-        onValueChange = { mTime.value = it },
+        value = timeState.text,
+        onValueChange = {
+            viewModel.onEvent(AddEditTransactionEvent.EnteredTime(it))
+        },
         modifier = modifier
     )
 }
 
 @Composable
-fun DatePickerField(modifier: Modifier) {
-    val date = remember {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mutableStateOf(LocalDate.now())
-        } else {
-            return
-        }
-    }
+fun DatePickerField(
+    modifier: Modifier,
+    dateState: TextFieldState,
+    viewModel: AddEditTransactionViewModel,
+) {
+
+//    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+//    val date = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//        mutableStateOf(LocalDate.now())
+//    } else {
+//        return
+//    }
+//
+//    viewModel.onEvent(AddEditTransactionEvent.EnteredDate(date.value))
+
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         CrebitsDatePicker(
-            value = date.value,
-            onValueChange = { date.value = it },
+            value = dateState.text,
+            onValueChange = {
+                viewModel.onEvent(AddEditTransactionEvent.EnteredDate(it))
+            },
             modifier = modifier
         )
     }
 }
 
 
-val descTextModifier = Modifier
-    .fillMaxWidth()
-    .height(120.dp)
-
 @Composable
-fun EnterDescriptionTextArea() {
-    var description by remember { mutableStateOf("") }
+fun EnterDescriptionTextArea(
+    descState: TextFieldState,
+    viewModel: AddEditTransactionViewModel,
+) {
+
+    val descTextModifier = Modifier
+        .fillMaxWidth()
+        .height(120.dp)
 
     OutlinedTextField(
-        value = description,
-        onValueChange = { description = it },
+        value = descState.text,
+        onValueChange = {
+            viewModel.onEvent(AddEditTransactionEvent.EnteredDescription(it))
+        },
         label = { Text(text = "Description") },
         modifier = descTextModifier,
         maxLines = 5,
@@ -210,19 +265,23 @@ fun EnterDescriptionTextArea() {
 }
 
 
-val boxModifier = Modifier
-    .fillMaxHeight()
-    .padding(bottom = 10.dp)
-
-val buttonModifier = Modifier
-    .fillMaxWidth()
-    .height(46.dp)
-
 @Composable
-fun SaveButton() {
+fun SaveButton(viewModel: AddEditTransactionViewModel) {
+
+    val boxModifier = Modifier
+        .fillMaxHeight()
+        .padding(bottom = 10.dp)
+
+    val buttonModifier = Modifier
+        .fillMaxWidth()
+        .height(46.dp)
+
+
     Box(modifier = boxModifier) {
         Button(
-            onClick = {},
+            onClick = {
+                viewModel.onEvent(AddEditTransactionEvent.SaveTransaction)
+            },
             shape = RectangleShape,
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = ThemeBlack,

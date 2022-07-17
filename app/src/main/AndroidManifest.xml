@@ -4,6 +4,7 @@
     package="com.shobu95.crebitscompose">
 
     <application
+        android:name=".Crebits"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

@@ -23,20 +23,31 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun CrebitsDatePicker(
     modifier: Modifier,
-    value: LocalDate,
-    onValueChange: (LocalDate) -> Unit,
+    value: String,
+    onValueChange: (String) -> Unit,
 ) {
 
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
+    val date = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        LocalDate.now()
+    } else {
+        return
+    }
+
+    val year = date.year
+    val monthValue = date.monthValue
+    val dayOfMonth = date.dayOfMonth
+
+
     val datePickerDialog = remember {
         DatePickerDialog(
             context, { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-                onValueChange(LocalDate.of(year, month, dayOfMonth))
+                onValueChange(LocalDate.of(year, month, dayOfMonth).format(formatter))
                 focusManager.clearFocus()
-            }, value.year, value.monthValue, value.dayOfMonth
+            }, year, monthValue, dayOfMonth
         ).apply {
             setOnDismissListener {
                 focusManager.clearFocus()
@@ -47,7 +58,9 @@ fun CrebitsDatePicker(
 
     OutlinedTextField(
         value = value.format(formatter),
-        onValueChange = { onValueChange(LocalDate.parse(it, formatter)) },
+        onValueChange = {
+            onValueChange(LocalDate.of(year, monthValue, dayOfMonth).format(formatter))
+        },
         label = { Text(text = "Date") },
         modifier = modifier.onFocusChanged {
             if (it.isFocused)

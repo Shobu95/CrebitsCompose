@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.data.model
+package com.shobu95.crebitscompose.domain.model
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -29,3 +29,5 @@ data class TransactionData(
                 "description=$description)"
     }
 }
+
+class InvalidTransactionException(message: String) : Exception(message)
