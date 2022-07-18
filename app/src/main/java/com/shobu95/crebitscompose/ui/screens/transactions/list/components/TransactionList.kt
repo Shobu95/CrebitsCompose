@@ -6,7 +6,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.shobu95.crebitscompose.ui.screens.transactions.list.TransactionItem
 import com.shobu95.crebitscompose.ui.screens.transactions.list.TransactionViewModel
 import com.shobu95.crebitscompose.ui.screens.transactions.list.state.TransactionEvent
 import com.shobu95.crebitscompose.ui.screens.transactions.list.state.TransactionListState
