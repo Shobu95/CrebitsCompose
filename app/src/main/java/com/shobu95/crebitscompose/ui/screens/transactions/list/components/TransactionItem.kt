@@ -26,8 +26,7 @@ fun TransactionItemPrev() {
 
 @Composable
 fun TransactionItem(
-    transactionData: Transaction,
-    modifier: Modifier = Modifier,
+    transaction: Transaction,
     onDeleteClick: () -> Unit,
     onEditClick: () -> Unit,
 ) {
@@ -47,7 +46,7 @@ fun TransactionItem(
             )
 
             Text(
-                text = transactionData.amount.toString(),
+                text = transaction.amount.toString(),
             )
 
             IconButton(onClick = onDeleteClick) {

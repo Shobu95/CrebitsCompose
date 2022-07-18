@@ -20,7 +20,6 @@ class TransactionViewModel @Inject constructor(
     private val transactionUseCases: TransactionUseCases,
 ) : ViewModel() {
 
-
     private val _state = mutableStateOf(TransactionListState())
     val state: State<TransactionListState> = _state
 
