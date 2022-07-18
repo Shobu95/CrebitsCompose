@@ -8,6 +8,7 @@ Its a revamped version of my old Crebits app. Link: [Crebits](https://github.com
 
 - Hilt
 - Room
+- Flow
 - Kotlin
 - Coroutines
 - Material Icons
