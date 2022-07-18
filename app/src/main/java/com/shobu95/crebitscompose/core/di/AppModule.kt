@@ -38,7 +38,7 @@ class AppModule {
     @Singleton
     fun providesTransactionUseCases(repository: TransactionRepository): TransactionUseCases {
         return TransactionUseCases(
-            getTransaction = GetTransactionUseCase(repository),
+            getAllTransactions = GetAllTransactionsUseCase(repository),
             deleteTransaction = DeleteTransactionUseCase(repository),
             addTransaction = AddTransactionUseCase(repository),
             getTransactionById = GetTransactionByIdUseCase(repository)

@@ -21,9 +21,7 @@ fun HomeNavigationGraph(navController: NavHostController) {
 
         composable(HomeScreenItem.Transactions.route) {
             TransactionsScreen(HomeScreenItem.Transactions.title
-            ) {
-                navController.navigate(HomeScreenItem.AddTransaction.route)
-            }
+            ) { navController.navigate(HomeScreenItem.AddTransaction.route) }
         }
 
         composable(HomeScreenItem.AddTransaction.route) {
