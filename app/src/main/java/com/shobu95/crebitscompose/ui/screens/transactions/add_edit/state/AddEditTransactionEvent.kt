@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.ui.screens.home.transactions
+package com.shobu95.crebitscompose.ui.screens.transactions.add_edit.state
 
 sealed class AddEditTransactionEvent {
     data class EnteredAmount(val value: String) : AddEditTransactionEvent()

@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.ui.screens.home.dashboard.components
+package com.shobu95.crebitscompose.ui.screens.dashboard.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card

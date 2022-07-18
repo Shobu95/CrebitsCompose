@@ -28,6 +28,15 @@ import com.shobu95.crebitscompose.ui.theme.CrebitsComposeTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
+@Preview(showBackground = true)
+@Composable
+fun SplashScreenPreview() {
+    CrebitsComposeTheme {
+        SplashScreen()
+    }
+}
+
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,14 +60,6 @@ class SplashActivity : ComponentActivity() {
             context.startActivity(intent)
             finish()
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SplashScreenPreview() {
-    CrebitsComposeTheme {
-        SplashScreen()
     }
 }
 

@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.shobu95.crebitscompose.ui.screens.home.dashboard.DashboardScreen
-import com.shobu95.crebitscompose.ui.screens.home.settings.SettingsScreen
-import com.shobu95.crebitscompose.ui.screens.home.transactions.AddEditTransactionScreen
-import com.shobu95.crebitscompose.ui.screens.home.transactions.TransactionsScreen
+import com.shobu95.crebitscompose.ui.screens.dashboard.DashboardScreen
+import com.shobu95.crebitscompose.ui.screens.settings.SettingsScreen
+import com.shobu95.crebitscompose.ui.screens.transactions.add_edit.AddEditTransactionScreen
+import com.shobu95.crebitscompose.ui.screens.transactions.list.TransactionsScreen
 
 @Composable
 fun HomeNavigationGraph(navController: NavHostController) {

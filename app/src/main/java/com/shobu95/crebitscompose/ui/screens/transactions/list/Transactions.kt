@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.ui.screens.home.transactions
+package com.shobu95.crebitscompose.ui.screens.transactions.list
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
@@ -17,8 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
-import com.shobu95.crebitscompose.ui.screens.home.transactions.state.TransactionEvent
-import com.shobu95.crebitscompose.ui.screens.home.transactions.state.TransactionListState
+import com.shobu95.crebitscompose.ui.screens.transactions.list.state.TransactionEvent
+import com.shobu95.crebitscompose.ui.screens.transactions.list.state.TransactionListState
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
 import com.shobu95.crebitscompose.ui.theme.ThemeBackground
 import com.shobu95.crebitscompose.ui.theme.ThemeBlack

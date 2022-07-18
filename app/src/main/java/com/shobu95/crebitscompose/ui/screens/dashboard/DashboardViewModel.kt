@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.ui.screens.home.dashboard
+package com.shobu95.crebitscompose.ui.screens.dashboard
 
 import androidx.lifecycle.ViewModel
 

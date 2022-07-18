@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import com.shobu95.crebitscompose.domain.convertTo12Hour
-import com.shobu95.crebitscompose.domain.getCurrentHourMinute
+import com.shobu95.crebitscompose.domain.utils.convertTo12Hour
+import com.shobu95.crebitscompose.domain.utils.getCurrentHourMinute
 
 @Composable
 fun CrebitsTimePicker(

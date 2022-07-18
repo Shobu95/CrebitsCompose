@@ -1,12 +1,12 @@
-package com.shobu95.crebitscompose.ui.screens.home.transactions
+package com.shobu95.crebitscompose.ui.screens.transactions.list
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shobu95.crebitscompose.domain.use_cases.TransactionUseCases
-import com.shobu95.crebitscompose.ui.screens.home.transactions.state.TransactionEvent
-import com.shobu95.crebitscompose.ui.screens.home.transactions.state.TransactionListState
+import com.shobu95.crebitscompose.domain.use_cases.transaction.TransactionUseCases
+import com.shobu95.crebitscompose.ui.screens.transactions.list.state.TransactionEvent
+import com.shobu95.crebitscompose.ui.screens.transactions.list.state.TransactionListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn

@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "transaction_table")
-data class TransactionData(
+data class Transaction(
 
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,

@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.shobu95.crebits.backend.local.TransactionDatabase
 import com.shobu95.crebitscompose.data.repository.TransactionRepository
 import com.shobu95.crebitscompose.data.repository.TransactionRepositoryImpl
-import com.shobu95.crebitscompose.domain.use_cases.*
+import com.shobu95.crebitscompose.domain.use_cases.transaction.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.ui.screens.home.settings
+package com.shobu95.crebitscompose.ui.screens.settings
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*

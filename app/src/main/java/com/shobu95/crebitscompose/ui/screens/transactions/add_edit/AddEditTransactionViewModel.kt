@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.ui.screens.home.transactions
+package com.shobu95.crebitscompose.ui.screens.transactions.add_edit
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -6,9 +6,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shobu95.crebitscompose.domain.model.InvalidTransactionException
-import com.shobu95.crebitscompose.domain.model.TransactionData
-import com.shobu95.crebitscompose.domain.use_cases.TransactionUseCases
-import com.shobu95.crebitscompose.ui.screens.home.transactions.state.TextFieldState
+import com.shobu95.crebitscompose.domain.model.Transaction
+import com.shobu95.crebitscompose.domain.use_cases.transaction.TransactionUseCases
+import com.shobu95.crebitscompose.ui.screens.transactions.add_edit.state.AddEditTransactionEvent
+import com.shobu95.crebitscompose.ui.screens.transactions.add_edit.state.TextFieldState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -106,7 +107,7 @@ class AddEditTransactionViewModel @Inject constructor(
                 viewModelScope.launch {
                     try {
                         useCase.addTransaction(
-                            TransactionData(
+                            Transaction(
                                 id = transactionId,
                                 type = type.value,
                                 amount = amountText.value.text,

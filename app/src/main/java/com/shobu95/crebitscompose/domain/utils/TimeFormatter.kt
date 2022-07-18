@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.domain
+package com.shobu95.crebitscompose.domain.utils
 
 import java.text.SimpleDateFormat
 import java.util.*

@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.ui.screens.home.dashboard
+package com.shobu95.crebitscompose.ui.screens.dashboard
 
 import DonutChart
 import androidx.annotation.StringRes
@@ -15,8 +15,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
-import com.shobu95.crebitscompose.ui.screens.home.dashboard.components.DeficitTile
-import com.shobu95.crebitscompose.ui.screens.home.dashboard.components.TransactionTiles
+import com.shobu95.crebitscompose.ui.screens.dashboard.components.DeficitTile
+import com.shobu95.crebitscompose.ui.screens.dashboard.components.TransactionTiles
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
 import com.shobu95.crebitscompose.ui.theme.ThemeBackground
 

@@ -1,4 +1,4 @@
-package com.shobu95.crebitscompose.ui.screens.home.transactions
+package com.shobu95.crebitscompose.ui.screens.transactions.list
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.shobu95.crebitscompose.R
-import com.shobu95.crebitscompose.domain.model.TransactionData
+import com.shobu95.crebitscompose.domain.model.Transaction
 
 @Preview
 @Composable
@@ -26,7 +26,7 @@ fun TransactionItemPrev() {
 
 @Composable
 fun TransactionItem(
-    transactionData: TransactionData,
+    transactionData: Transaction,
     modifier: Modifier = Modifier,
     onDeleteClick: () -> Unit,
     onEditClick: () -> Unit,
