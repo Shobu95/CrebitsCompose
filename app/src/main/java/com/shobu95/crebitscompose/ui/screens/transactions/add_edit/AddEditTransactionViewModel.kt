@@ -116,10 +116,14 @@ class AddEditTransactionViewModel @Inject constructor(
                                 description = descText.value.text
                             )
                         )
-                        _eventFlow.emit(UiEvent.SaveTransaction)
+                        _eventFlow.emit(
+                            UiEvent.SaveTransactionSuccess(
+                                message = "Transaction added successfully!"
+                            )
+                        )
                     } catch (e: InvalidTransactionException) {
                         _eventFlow.emit(
-                            UiEvent.ShowSnackBar(
+                            UiEvent.ShowToast(
                                 message = e.message ?: "Transaction couldn't be added"
                             )
                         )
@@ -131,8 +135,8 @@ class AddEditTransactionViewModel @Inject constructor(
 
 
     sealed class UiEvent {
-        data class ShowSnackBar(val message: String) : UiEvent()
-        object SaveTransaction : UiEvent()
+        data class ShowToast(val message: String) : UiEvent()
+        data class SaveTransactionSuccess(val message: String) : UiEvent()
     }
 
 }

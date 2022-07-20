@@ -1,10 +1,12 @@
 package com.shobu95.crebitscompose.ui.screens.transactions.add_edit
 
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -31,6 +33,7 @@ fun AddEditTransactionScreen(
 ) {
 
     val scaffoldState = rememberScaffoldState()
+    val context = LocalContext.current
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -46,17 +49,25 @@ fun AddEditTransactionScreen(
         AddTransactionBody(viewModel)
     }
 
+
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
-                is AddEditTransactionViewModel.UiEvent.SaveTransaction -> {
+                is AddEditTransactionViewModel.UiEvent.SaveTransactionSuccess -> {
                     navigateBack()
+                    Toast.makeText(
+                        context,
+                        event.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
-                is AddEditTransactionViewModel.UiEvent.ShowSnackBar -> {
-                    scaffoldState.snackbarHostState.showSnackbar(
-                        message = event.message
-                    )
+                is AddEditTransactionViewModel.UiEvent.ShowToast -> {
+                    Toast.makeText(
+                        context,
+                        event.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
