@@ -1,6 +1,5 @@
 package com.shobu95.crebitscompose.ui.screens.transactions.add_edit
 
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
@@ -13,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.screens.transactions.add_edit.components.AddTransactionBody
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
+import com.shobu95.crebitscompose.ui.shared.ShowToastAlert
 import com.shobu95.crebitscompose.ui.theme.ThemeBackground
 import kotlinx.coroutines.flow.collectLatest
 
@@ -55,19 +55,10 @@ fun AddEditTransactionScreen(
             when (event) {
                 is AddEditTransactionViewModel.UiEvent.SaveTransactionSuccess -> {
                     navigateBack()
-                    Toast.makeText(
-                        context,
-                        event.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
 
                 is AddEditTransactionViewModel.UiEvent.ShowToast -> {
-                    Toast.makeText(
-                        context,
-                        event.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ShowToastAlert(context, event.message)
                 }
             }
         }

@@ -117,7 +117,10 @@ class AddEditTransactionViewModel @Inject constructor(
                             )
                         )
                         _eventFlow.emit(
-                            UiEvent.SaveTransactionSuccess(
+                            UiEvent.SaveTransactionSuccess
+                        )
+                        _eventFlow.emit(
+                            UiEvent.ShowToast(
                                 message = "Transaction added successfully!"
                             )
                         )
@@ -136,7 +139,7 @@ class AddEditTransactionViewModel @Inject constructor(
 
     sealed class UiEvent {
         data class ShowToast(val message: String) : UiEvent()
-        data class SaveTransactionSuccess(val message: String) : UiEvent()
+        object SaveTransactionSuccess : UiEvent()
     }
 
 }
