@@ -11,7 +11,7 @@ interface TransactionDao {
     /*
     * Transaction
     * */
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(transactionData: Transaction)
 
     @Update
