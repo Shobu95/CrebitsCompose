@@ -9,6 +9,7 @@ import com.shobu95.crebitscompose.data.repository.TransactionRepository
 import com.shobu95.crebitscompose.data.repository.TransactionRepositoryImpl
 import com.shobu95.crebitscompose.domain.model.Transaction
 import kotlinx.coroutines.runBlocking
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -25,7 +26,7 @@ class TransactionDatabaseTest {
     lateinit var transactionRepository: TransactionRepository
 
     @Before
-    fun `initialize database`() {
+    fun `initialize database and add a dummy transaction`() {
 
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
@@ -35,7 +36,21 @@ class TransactionDatabaseTest {
 
         transactionRepository = TransactionRepositoryImpl(db.transactionDao)
 
+        val transaction = Transaction(
+            null,
+            "Credit",
+            "2000",
+            "12/03/2022",
+            "11:20 AM",
+            "sample test description"
+        )
+
+        runBlocking {
+            transactionRepository.insert(transaction)
+        }
+
     }
+
 
     @Test
     fun `1- should initialize database`() {
@@ -49,18 +64,8 @@ class TransactionDatabaseTest {
     }
 
     @Test
-    fun `3- should insert transaction and get it by id`() {
-        val transaction = Transaction(
-            null,
-            "Credit",
-            "2000",
-            "12/03/2022",
-            "11:20 AM",
-            "sample test description"
-        )
-
+    fun `3- should get transaction by id`() {
         runBlocking {
-            transactionRepository.insert(transaction)
             val testTransaction = transactionRepository.getById(1)
             assertEquals(testTransaction?.amount, "2000")
         }
@@ -68,20 +73,7 @@ class TransactionDatabaseTest {
     }
 
     @Test
-    fun `4- should insert transaction and delete successfully`() {
-        val transaction = Transaction(
-            null,
-            "Credit",
-            "2000",
-            "12/03/2022",
-            "11:20 AM",
-            "sample test description"
-        )
-
-        runBlocking {
-            transactionRepository.insert(transaction)
-        }
-
+    fun `4- should delete transaction successfully`() {
         runBlocking {
             val testTransaction = transactionRepository.getById(1)
             transactionRepository.delete(testTransaction!!)
@@ -90,18 +82,8 @@ class TransactionDatabaseTest {
     }
 
     @Test
-    fun `5- should insert transaction and update successfully`() {
-        val transaction = Transaction(
-            null,
-            "Credit",
-            "2000",
-            "12/03/2022",
-            "11:20 AM",
-            "sample test description"
-        )
-
+    fun `5- should update transaction successfully`() {
         runBlocking {
-            transactionRepository.insert(transaction)
 
             var testTransaction = transactionRepository.getById(1)
             testTransaction?.apply {
@@ -117,19 +99,8 @@ class TransactionDatabaseTest {
     }
 
     @Test
-    fun `6- should upsert successfully`() {
-        val transaction = Transaction(
-            null,
-            "Credit",
-            "2000",
-            "12/03/2022",
-            "11:20 AM",
-            "sample test description"
-        )
-
+    fun `6- should upsert transaction successfully`() {
         runBlocking {
-            transactionRepository.insert(transaction)
-
             var testTransaction = transactionRepository.getById(1)
             testTransaction?.apply {
                 amount = "1234"
@@ -141,6 +112,11 @@ class TransactionDatabaseTest {
             assertEquals(updatedTransaction?.amount, "1234")
             assertEquals(updatedTransaction?.description, "nothing here")
         }
+    }
+
+    @After
+    fun `close db`() {
+        db.close()
     }
 
 
