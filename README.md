@@ -2,6 +2,8 @@
 A personal project made using Jetpack Compose, Clean-MVVM architecture and other jetpack libraries that helps you keep track of your credit and debit transactions.
 **(CREdits + deBITS = CREBITS)**
 
+![crebits_preview](https://user-images.githubusercontent.com/20271259/185470993-df905107-7ecc-43e0-b750-3fbffa13fc79.jpg)
+
 Its a revamped version of my old [Crebits](https://github.com/Shobu95/Crebits "Crebits") app.
 
 ## Created using:
