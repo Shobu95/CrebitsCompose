@@ -56,7 +56,10 @@ class SplashActivity : ComponentActivity() {
     private fun navigateToHome(context: Context) {
         lifecycleScope.launch {
             delay(1000)
-            val intent = Intent(this@SplashActivity, HomeActivity::class.java)
+            val intent = Intent(
+                this@SplashActivity,
+                HomeActivity::class.java
+            )
             context.startActivity(intent)
             finish()
         }
