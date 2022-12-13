@@ -45,7 +45,7 @@ fun CrebitsDatePicker(
     val datePickerDialog = remember {
         DatePickerDialog(
             context, { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-                onValueChange(LocalDate.of(year, month, dayOfMonth).format(formatter))
+                onValueChange(LocalDate.of(year, month + 1, dayOfMonth).format(formatter))
                 focusManager.clearFocus()
             }, year, monthValue, dayOfMonth
         ).apply {

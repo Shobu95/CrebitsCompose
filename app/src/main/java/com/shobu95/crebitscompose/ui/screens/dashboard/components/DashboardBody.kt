@@ -11,16 +11,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.shobu95.crebitscompose.ui.screens.dashboard.state.DashboardState
 
 
 @Preview
 @Composable
 fun DashboardBodyPrev() {
-    DashboardBody()
+//    DashboardBody(state)
 }
 
 @Composable
-fun DashboardBody() {
+fun DashboardBody(state: DashboardState) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -36,7 +37,10 @@ fun DashboardBody() {
                 colors = listOf(Color.Black, Color.LightGray),
                 modifier = Modifier.size(300.dp)
             )
-            DonutData(modifier = Modifier.align(Center))
+            DonutData(
+                modifier = Modifier.align(Center),
+                state
+            )
 
         }
         DeficitTile()
@@ -45,10 +49,13 @@ fun DashboardBody() {
 }
 
 @Composable
-fun DonutData(modifier: Modifier) {
+fun DonutData(
+    modifier: Modifier,
+    state: DashboardState
+) {
     Text(
         modifier = modifier,
-        text = "Crebits",
+        text = "Credits ${state.graphData.first} % \nDebits ${state.graphData.second} %",
         fontSize = 20.sp
     )
 }
