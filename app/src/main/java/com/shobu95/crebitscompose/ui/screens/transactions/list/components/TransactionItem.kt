@@ -91,7 +91,7 @@ fun TransactionItem(
 }
 
 @Composable
-fun CreditIcon() {
+fun DebitIcon() {
     Icon(
         contentDescription = "Transaction Icon",
         modifier = Modifier.size(40.dp),
@@ -104,7 +104,7 @@ fun CreditIcon() {
 
 
 @Composable
-fun DebitIcon() {
+fun CreditIcon() {
     Icon(
         contentDescription = "Transaction Icon",
         modifier = Modifier.size(40.dp),

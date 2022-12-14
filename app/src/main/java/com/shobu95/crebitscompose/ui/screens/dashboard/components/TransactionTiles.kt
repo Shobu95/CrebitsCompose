@@ -76,7 +76,7 @@ fun TransactionTiles(state: DashboardState) {
                 )
 
                 Text(
-                    text = "11",
+                    text = state.currentMonthTransactions.toString(),
                     style = TextStyle(
                         color = ThemeBlack,
                         fontSize = 40.sp,
