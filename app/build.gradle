@@ -22,12 +22,23 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'crebits-compose'
+            keyPassword 'crebits123'
+            storeFile file('../crebits.jks')
+            storePassword 'crebits123'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

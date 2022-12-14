@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.DarkMode
@@ -16,6 +17,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun DarkModeOption() {
     Card(
+        backgroundColor = MaterialTheme.colors.primary,
         elevation = 2.dp,
         modifier = Modifier
             .fillMaxWidth()
@@ -27,6 +29,7 @@ fun DarkModeOption() {
         ) {
             Icon(
                 imageVector = Icons.Outlined.DarkMode,
+                tint = MaterialTheme.colors.secondary,
                 contentDescription = "dark mode",
                 modifier = Modifier.padding(end = 24.dp)
             )

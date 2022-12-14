@@ -2,6 +2,7 @@ package com.shobu95.crebitscompose.ui.screens.dashboard.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.shobu95.crebitscompose.ui.screens.dashboard.state.DashboardState
-import com.shobu95.crebitscompose.ui.theme.ThemeBlack
 
 
 @Preview
@@ -28,6 +28,7 @@ fun TransactionTiles(state: DashboardState) {
             .fillMaxWidth()
     ) {
         Card(
+            backgroundColor = MaterialTheme.colors.primary,
             elevation = 2.dp,
             modifier = Modifier
                 .weight(1f)
@@ -38,7 +39,7 @@ fun TransactionTiles(state: DashboardState) {
                 Text(
                     text = "Total Transactions:",
                     style = TextStyle(
-                        color = ThemeBlack,
+                        color = MaterialTheme.colors.secondary,
                         fontSize = 16.sp
                     ),
                     modifier = Modifier.width(100.dp)
@@ -47,7 +48,7 @@ fun TransactionTiles(state: DashboardState) {
                 Text(
                     text = state.totalTransactions.toString(),
                     style = TextStyle(
-                        color = ThemeBlack,
+                        color = MaterialTheme.colors.secondary,
                         fontSize = 40.sp,
                         textAlign = TextAlign.End
                     ),
@@ -59,6 +60,7 @@ fun TransactionTiles(state: DashboardState) {
         }
 
         Card(
+            backgroundColor = MaterialTheme.colors.primary,
             elevation = 2.dp,
             modifier = Modifier
                 .weight(1f)
@@ -69,7 +71,7 @@ fun TransactionTiles(state: DashboardState) {
                 Text(
                     text = "Transactions This Month:",
                     style = TextStyle(
-                        color = ThemeBlack,
+                        color = MaterialTheme.colors.secondary,
                         fontSize = 16.sp
                     ),
                     modifier = Modifier.width(100.dp)
@@ -78,7 +80,7 @@ fun TransactionTiles(state: DashboardState) {
                 Text(
                     text = state.currentMonthTransactions.toString(),
                     style = TextStyle(
-                        color = ThemeBlack,
+                        color = MaterialTheme.colors.secondary,
                         fontSize = 40.sp,
                         textAlign = TextAlign.End
                     ),

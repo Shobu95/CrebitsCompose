@@ -13,7 +13,7 @@ import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.screens.transactions.add_edit.components.AddTransactionBody
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
 import com.shobu95.crebitscompose.ui.shared.ShowToastAlert
-import com.shobu95.crebitscompose.ui.theme.ThemeBackground
+import com.shobu95.crebitscompose.ui.theme.ThemeBackgroundLight
 import kotlinx.coroutines.flow.collectLatest
 
 @Preview
@@ -37,7 +37,7 @@ fun AddEditTransactionScreen(
 
     Scaffold(
         scaffoldState = scaffoldState,
-        backgroundColor = ThemeBackground,
+        backgroundColor = ThemeBackgroundLight,
         topBar = {
             CrebitsTopAppBar(
                 title = stringResource(id = title),

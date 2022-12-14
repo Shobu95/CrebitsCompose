@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.screens.settings.components.SettingsScreenBody
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
-import com.shobu95.crebitscompose.ui.theme.ThemeBackground
+import com.shobu95.crebitscompose.ui.theme.ThemeBackgroundLight
 
 
 @Preview
@@ -21,7 +21,7 @@ fun SettingsPreview() {
 @Composable
 fun SettingsScreen(@StringRes title: Int) {
     Scaffold(
-        backgroundColor = ThemeBackground,
+        backgroundColor = ThemeBackgroundLight,
         topBar = {
             CrebitsTopAppBar(
                 title = stringResource(id = title),

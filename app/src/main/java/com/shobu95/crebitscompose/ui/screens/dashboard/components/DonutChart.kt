@@ -1,5 +1,6 @@
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -16,7 +17,7 @@ import androidx.compose.ui.unit.dp
 fun CrebitsDonutChartPrev() {
     DonutChart(
         points = listOf(40f, 60f),
-        colors = listOf(Color.Black, Color.LightGray),
+        colors = listOf(MaterialTheme.colors.secondary, Color.LightGray),
         modifier = Modifier.size(250.dp)
     )
 }

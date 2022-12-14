@@ -1,10 +1,7 @@
 package com.shobu95.crebitscompose.ui.screens.transactions.list.components
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.runtime.Composable
@@ -43,6 +40,7 @@ fun TransactionItem(
     onEditClick: () -> Unit,
 ) {
     Card(
+        backgroundColor = MaterialTheme.colors.primary,
         elevation = 2.dp,
         modifier = Modifier
             .fillMaxWidth()
@@ -65,6 +63,7 @@ fun TransactionItem(
                 .weight(1f)) {
                 Text(
                     text = "Rs.${transaction.amount}",
+                    color = MaterialTheme.colors.secondary,
                     fontSize = 22.sp,
                 )
 
@@ -82,6 +81,7 @@ fun TransactionItem(
                 Icon(
                     modifier = Modifier.size(28.dp),
                     imageVector = Icons.Outlined.Delete,
+                    tint = MaterialTheme.colors.secondary,
                     contentDescription = "Delete button",
                 )
             }

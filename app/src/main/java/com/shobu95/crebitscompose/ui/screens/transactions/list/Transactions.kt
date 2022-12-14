@@ -16,7 +16,7 @@ import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.screens.transactions.list.components.AddTransactionFab
 import com.shobu95.crebitscompose.ui.screens.transactions.list.components.TransactionsBody
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
-import com.shobu95.crebitscompose.ui.theme.ThemeBackground
+import com.shobu95.crebitscompose.ui.theme.ThemeBackgroundLight
 
 
 @Preview
@@ -40,7 +40,7 @@ fun TransactionsScreen(
 
     Scaffold(
         scaffoldState = scaffoldState,
-        backgroundColor = ThemeBackground,
+        backgroundColor = ThemeBackgroundLight,
         topBar = {
             CrebitsTopAppBar(
                 title = stringResource(id = title),

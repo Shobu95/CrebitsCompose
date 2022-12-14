@@ -44,8 +44,10 @@ class SplashActivity : ComponentActivity() {
         setContent {
             CrebitsComposeTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.surface
+                ) {
                     SplashScreen()
                     navigateToHome(LocalContext.current)
                 }

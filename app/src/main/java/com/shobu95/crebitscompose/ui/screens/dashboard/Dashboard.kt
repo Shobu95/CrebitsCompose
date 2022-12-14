@@ -9,7 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.screens.dashboard.components.DashboardBody
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
-import com.shobu95.crebitscompose.ui.theme.ThemeBackground
+import com.shobu95.crebitscompose.ui.theme.ThemeBackgroundLight
 
 @Preview
 @Composable
@@ -25,7 +25,7 @@ fun DashboardScreen(
     val state = viewModel.state.value
 
     Scaffold(
-        backgroundColor = ThemeBackground,
+        backgroundColor = ThemeBackgroundLight,
         topBar = {
             CrebitsTopAppBar(
                 title = stringResource(id = title),
