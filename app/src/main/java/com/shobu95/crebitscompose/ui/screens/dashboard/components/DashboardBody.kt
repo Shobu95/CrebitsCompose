@@ -2,7 +2,6 @@ package com.shobu95.crebitscompose.ui.screens.dashboard.components
 
 import DonutChart
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,7 +33,7 @@ fun DashboardBody(state: DashboardState) {
             DonutData(state)
             DonutChart(
                 points = listOf(state.graphData.first, state.graphData.second) as List<Float>,
-                colors = listOf(MaterialTheme.colors.secondary, Color.LightGray),
+                colors = listOf(Color.Black, Color.LightGray),
                 modifier = Modifier
                     .size(300.dp)
                     .align(Center)

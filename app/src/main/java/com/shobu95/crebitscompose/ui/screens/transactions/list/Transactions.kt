@@ -3,6 +3,7 @@ package com.shobu95.crebitscompose.ui.screens.transactions.list
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FabPosition
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -16,7 +17,6 @@ import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.screens.transactions.list.components.AddTransactionFab
 import com.shobu95.crebitscompose.ui.screens.transactions.list.components.TransactionsBody
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
-import com.shobu95.crebitscompose.ui.theme.ThemeBackgroundLight
 
 
 @Preview
@@ -40,7 +40,7 @@ fun TransactionsScreen(
 
     Scaffold(
         scaffoldState = scaffoldState,
-        backgroundColor = ThemeBackgroundLight,
+        backgroundColor = MaterialTheme.colors.surface,
         topBar = {
             CrebitsTopAppBar(
                 title = stringResource(id = title),

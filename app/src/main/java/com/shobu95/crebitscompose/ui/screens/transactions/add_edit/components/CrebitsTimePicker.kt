@@ -2,9 +2,7 @@ package com.shobu95.crebitscompose.ui.shared
 
 import android.app.TimePickerDialog
 import androidx.compose.foundation.clickable
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccessTime
 import androidx.compose.runtime.Composable
@@ -58,6 +56,11 @@ fun CrebitsTimePicker(
                     timePickerDialog.show()
                 }
             )
-        }
+        },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = MaterialTheme.colors.secondary,
+            cursorColor = MaterialTheme.colors.secondary,
+            focusedLabelColor = MaterialTheme.colors.secondary,
+        )
     )
 }

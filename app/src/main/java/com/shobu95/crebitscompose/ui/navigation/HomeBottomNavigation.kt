@@ -1,7 +1,4 @@
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
@@ -22,8 +19,8 @@ fun HomeBottomNavBar(
         HomeScreenItem.Settings)
 
     BottomNavigation(
-        backgroundColor = Color.White,
-        contentColor = Color.Black
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.secondary
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -33,11 +30,12 @@ fun HomeBottomNavBar(
                 icon = {
                     Icon(
                         painterResource(id = item.icon),
-                        contentDescription = stringResource(id = item.title))
+                        contentDescription = stringResource(id = item.title)
+                    )
                 },
                 label = { Text(text = stringResource(id = item.title), fontSize = 9.sp) },
                 selected = (currentRoute == item.route),
-                selectedContentColor = Color.Black,
+                selectedContentColor = MaterialTheme.colors.secondary,
                 unselectedContentColor = Color.Gray,
                 alwaysShowLabel = false,
                 onClick = {

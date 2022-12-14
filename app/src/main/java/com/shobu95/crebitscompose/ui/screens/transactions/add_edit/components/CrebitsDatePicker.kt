@@ -5,9 +5,7 @@ import android.os.Build
 import android.widget.DatePicker
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.runtime.Composable
@@ -57,18 +55,32 @@ fun CrebitsDatePicker(
     }
 
 
-    OutlinedTextField(value = value.format(formatter), onValueChange = {
-        onValueChange(LocalDate.of(year, monthValue, dayOfMonth).format(formatter))
-    }, label = { Text(text = "Date") }, modifier = modifier.onFocusChanged {
-        if (it.isFocused) datePickerDialog.show()
-        else datePickerDialog.dismiss()
-    }, readOnly = true, trailingIcon = {
-        Icon(imageVector = Icons.Filled.DateRange,
-            contentDescription = "Select a date",
-            modifier = Modifier.clickable {
-                datePickerDialog.show()
-            })
-    })
+    OutlinedTextField(
+        value = value.format(formatter),
+        onValueChange = {
+            onValueChange(LocalDate.of(year, monthValue, dayOfMonth).format(formatter))
+        },
+        label = { Text(text = "Date") },
+        modifier = modifier.onFocusChanged {
+            if (it.isFocused) datePickerDialog.show()
+            else datePickerDialog.dismiss()
+        },
+        readOnly = true,
+        trailingIcon = {
+            Icon(
+                imageVector = Icons.Filled.DateRange,
+                contentDescription = "Select a date",
+                modifier = Modifier.clickable {
+                    datePickerDialog.show()
+                }
+            )
+        },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = MaterialTheme.colors.secondary,
+            cursorColor = MaterialTheme.colors.secondary,
+            focusedLabelColor = MaterialTheme.colors.secondary,
+        ),
+    )
 
 
 }
