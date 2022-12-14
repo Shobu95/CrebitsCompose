@@ -29,19 +29,15 @@ fun DashboardBody(state: DashboardState) {
             .padding(14.dp)
     ) {
 
-        Box(
-        ) {
-
+        Box() {
+            DonutData(state)
             DonutChart(
                 points = listOf(state.graphData.first, state.graphData.second) as List<Float>,
                 colors = listOf(Color.Black, Color.LightGray),
-                modifier = Modifier.size(300.dp)
+                modifier = Modifier
+                    .size(300.dp)
+                    .align(Center)
             )
-            DonutData(
-                modifier = Modifier.align(Center),
-                state
-            )
-
         }
         DeficitTile(state)
         TransactionTiles(state)
@@ -50,12 +46,24 @@ fun DashboardBody(state: DashboardState) {
 
 @Composable
 fun DonutData(
-    modifier: Modifier,
     state: DashboardState
 ) {
-    Text(
-        modifier = modifier,
-        text = "Credits ${state.graphData.first} % \nDebits ${state.graphData.second} %",
-        fontSize = 20.sp
-    )
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp, start = 12.dp, end = 12.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = "Debits ${state.graphData.second}%",
+            fontSize = 16.sp
+        )
+
+        Text(
+            text = "Credits ${state.graphData.first}%",
+            fontSize = 16.sp
+        )
+    }
+
+
 }

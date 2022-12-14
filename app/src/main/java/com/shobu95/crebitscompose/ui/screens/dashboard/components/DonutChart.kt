@@ -75,7 +75,7 @@ fun DrawScope.DrawArc(
             height = size.width - padding
         ),
         style = Stroke(
-            width = 100f
+            width = 130f
         ),
         topLeft = Offset(padding / 2f, padding / 2f)
     )
