@@ -6,6 +6,7 @@ import com.shobu95.crebits.backend.local.TransactionDatabase
 import com.shobu95.crebitscompose.data.repository.TransactionRepository
 import com.shobu95.crebitscompose.data.repository.TransactionRepositoryImpl
 import com.shobu95.crebitscompose.domain.use_cases.dashboard.DashboardUseCases
+import com.shobu95.crebitscompose.domain.use_cases.dashboard.GetCurrentMonthDeficitUseCase
 import com.shobu95.crebitscompose.domain.use_cases.dashboard.GraphDataUseCase
 import com.shobu95.crebitscompose.domain.use_cases.transaction.*
 import dagger.Module
@@ -52,7 +53,8 @@ class AppModule {
     fun providesDashboardUseCases(repository: TransactionRepository): DashboardUseCases {
         return DashboardUseCases(
             getAllTransactions = GetAllTransactionsUseCase(repository),
-            getGraphData = GraphDataUseCase()
+            getGraphData = GraphDataUseCase(),
+            getCurrentMonthDeficit = GetCurrentMonthDeficitUseCase()
         )
     }
 

@@ -43,7 +43,7 @@ fun DashboardBody(state: DashboardState) {
             )
 
         }
-        DeficitTile()
+        DeficitTile(state)
         TransactionTiles(state)
     }
 }

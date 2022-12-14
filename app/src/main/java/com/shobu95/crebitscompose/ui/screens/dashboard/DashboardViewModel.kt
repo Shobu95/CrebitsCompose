@@ -28,11 +28,13 @@ class DashboardViewModel @Inject constructor(
             dashboardUseCase.getAllTransactions().collectLatest {
                 _state.value = state.value.copy(
                     totalTransactions = it.size,
-                    graphData = dashboardUseCase.getGraphData(it)
+                    graphData = dashboardUseCase.getGraphData(it),
+                    currentMonthDeficit = dashboardUseCase.getCurrentMonthDeficit(it)
                 )
             }
 
         }
 
     }
+
 }

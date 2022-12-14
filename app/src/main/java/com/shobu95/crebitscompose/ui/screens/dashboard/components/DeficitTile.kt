@@ -11,16 +11,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.shobu95.crebitscompose.ui.screens.dashboard.state.DashboardState
 import com.shobu95.crebitscompose.ui.theme.ThemeBlack
 
 @Preview
 @Composable
 fun DeficitTilePrev() {
-    DeficitTile()
+    DeficitTile(DashboardState())
 }
 
 @Composable
-fun DeficitTile() {
+fun DeficitTile(state: DashboardState) {
     Card(
         elevation = 2.dp,
         modifier = Modifier
@@ -39,7 +40,7 @@ fun DeficitTile() {
             )
 
             Text(
-                text = "Rs. 23456.789",
+                text = "Rs. ${state.currentMonthDeficit.toDouble()}",
                 style = TextStyle(
                     color = ThemeBlack,
                     fontSize = 40.sp,

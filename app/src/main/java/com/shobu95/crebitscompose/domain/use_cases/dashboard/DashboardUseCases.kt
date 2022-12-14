@@ -4,5 +4,6 @@ import com.shobu95.crebitscompose.domain.use_cases.transaction.GetAllTransaction
 
 data class DashboardUseCases(
     val getAllTransactions: GetAllTransactionsUseCase,
-    val getGraphData: GraphDataUseCase
+    val getGraphData: GraphDataUseCase,
+    val getCurrentMonthDeficit: GetCurrentMonthDeficitUseCase
 )
