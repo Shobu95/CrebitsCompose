@@ -17,7 +17,7 @@ import com.shobu95.crebitscompose.ui.screens.dashboard.state.DashboardState
 @Preview
 @Composable
 fun DashboardBodyPrev() {
-//    DashboardBody(state)
+    DashboardBody(DashboardState())
 }
 
 @Composable
@@ -33,7 +33,7 @@ fun DashboardBody(state: DashboardState) {
         ) {
 
             DonutChart(
-                points = listOf(40f, 60f),
+                points = listOf(state.graphData.first, state.graphData.second) as List<Float>,
                 colors = listOf(Color.Black, Color.LightGray),
                 modifier = Modifier.size(300.dp)
             )
