@@ -6,7 +6,7 @@ import com.shobu95.crebits.backend.local.TransactionDatabase
 import com.shobu95.crebitscompose.data.repository.TransactionRepository
 import com.shobu95.crebitscompose.data.repository.TransactionRepositoryImpl
 import com.shobu95.crebitscompose.domain.use_cases.dashboard.DashboardUseCases
-import com.shobu95.crebitscompose.domain.use_cases.dashboard.TransactionGraphDataUseCase
+import com.shobu95.crebitscompose.domain.use_cases.dashboard.GraphDataUseCase
 import com.shobu95.crebitscompose.domain.use_cases.transaction.*
 import dagger.Module
 import dagger.Provides
@@ -51,8 +51,8 @@ class AppModule {
     @Singleton
     fun providesDashboardUseCases(repository: TransactionRepository): DashboardUseCases {
         return DashboardUseCases(
-            getAllTransactionsUseCase = GetAllTransactionsUseCase(repository),
-            getTransactionGraphDataUseCase = TransactionGraphDataUseCase()
+            getAllTransactions = GetAllTransactionsUseCase(repository),
+            getGraphData = GraphDataUseCase()
         )
     }
 

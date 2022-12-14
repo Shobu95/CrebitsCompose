@@ -11,19 +11,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.shobu95.crebitscompose.ui.screens.dashboard.state.DashboardState
 import com.shobu95.crebitscompose.ui.theme.ThemeBlack
 
 
 @Preview
 @Composable
 fun TransactionTilesPrev() {
-    TransactionTiles()
+    TransactionTiles(DashboardState())
 }
 
 @Composable
-fun TransactionTiles() {
-    Row(modifier = Modifier
-        .fillMaxWidth()
+fun TransactionTiles(state: DashboardState) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
     ) {
         Card(
             elevation = 2.dp,
@@ -43,7 +45,7 @@ fun TransactionTiles() {
                 )
 
                 Text(
-                    text = "72",
+                    text = state.totalTransactions.toString(),
                     style = TextStyle(
                         color = ThemeBlack,
                         fontSize = 40.sp,

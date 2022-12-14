@@ -2,7 +2,7 @@ package com.shobu95.crebitscompose.domain.use_cases.dashboard
 
 import com.shobu95.crebitscompose.domain.model.Transaction
 
-class TransactionGraphDataUseCase(
+class GraphDataUseCase(
 ) {
     operator fun invoke(transactions: List<Transaction>): Pair<Int, Int> {
         var total = 0

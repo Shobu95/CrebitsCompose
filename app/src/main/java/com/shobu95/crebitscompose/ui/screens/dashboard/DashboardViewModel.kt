@@ -25,9 +25,10 @@ class DashboardViewModel @Inject constructor(
 
     private fun getGraphData() {
         viewModelScope.launch {
-            dashboardUseCase.getAllTransactionsUseCase().collectLatest {
+            dashboardUseCase.getAllTransactions().collectLatest {
                 _state.value = state.value.copy(
-                    graphData = dashboardUseCase.getTransactionGraphDataUseCase(it)
+                    totalTransactions = it.size,
+                    graphData = dashboardUseCase.getGraphData(it)
                 )
             }
 
