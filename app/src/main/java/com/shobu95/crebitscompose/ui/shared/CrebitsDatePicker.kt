@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import com.shobu95.crebitscompose.domain.utils.MonthMapper
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -44,10 +45,10 @@ fun CrebitsDatePicker(
 
     val datePickerDialog = remember {
         DatePickerDialog(
-            context, { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-                onValueChange(LocalDate.of(year, month + 1, dayOfMonth).format(formatter))
+            context, { _: DatePicker, year: Int, monthValue: Int, dayOfMonth: Int ->
+                onValueChange(LocalDate.of(year, monthValue + 1, dayOfMonth).format(formatter))
                 focusManager.clearFocus()
-            }, year, monthValue, dayOfMonth
+            }, year, MonthMapper.monthsMap[monthValue]!!, dayOfMonth
         ).apply {
             setOnDismissListener {
                 focusManager.clearFocus()
@@ -56,29 +57,18 @@ fun CrebitsDatePicker(
     }
 
 
-    OutlinedTextField(
-        value = value.format(formatter),
-        onValueChange = {
-            onValueChange(LocalDate.of(year, monthValue, dayOfMonth).format(formatter))
-        },
-        label = { Text(text = "Date") },
-        modifier = modifier.onFocusChanged {
-            if (it.isFocused)
+    OutlinedTextField(value = value.format(formatter), onValueChange = {
+        onValueChange(LocalDate.of(year, monthValue, dayOfMonth).format(formatter))
+    }, label = { Text(text = "Date") }, modifier = modifier.onFocusChanged {
+        if (it.isFocused) datePickerDialog.show()
+        else datePickerDialog.dismiss()
+    }, readOnly = true, trailingIcon = {
+        Icon(imageVector = Icons.Filled.DateRange,
+            contentDescription = "Select a date",
+            modifier = Modifier.clickable {
                 datePickerDialog.show()
-            else
-                datePickerDialog.dismiss()
-        },
-        readOnly = true,
-        trailingIcon = {
-            Icon(
-                imageVector = Icons.Filled.DateRange,
-                contentDescription = "Select a date",
-                modifier = Modifier.clickable {
-                    datePickerDialog.show()
-                }
-            )
-        }
-    )
+            })
+    })
 
 
 }
