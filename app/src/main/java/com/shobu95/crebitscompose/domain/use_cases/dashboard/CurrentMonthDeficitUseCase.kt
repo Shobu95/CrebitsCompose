@@ -1,17 +1,10 @@
 package com.shobu95.crebitscompose.domain.use_cases.dashboard
 
 import com.shobu95.crebitscompose.domain.model.Transaction
-import com.shobu95.crebitscompose.domain.utils.DateTimeHelpers
 
 class CurrentMonthDeficitUseCase {
 
-    operator fun invoke(transactions: List<Transaction>): Int {
-        val currentMonth = DateTimeHelpers.getCurrentMonth()
-
-        val currentMonthTransactions = transactions.filter { transaction ->
-            val monthOfTransaction = transaction.date?.split('/')!![1]
-            monthOfTransaction.toInt() == currentMonth
-        }
+    operator fun invoke(currentMonthTransactions: List<Transaction>): Int {
 
         val creditTransactions = currentMonthTransactions.filter { transaction ->
             transaction.type.equals("Credit")
