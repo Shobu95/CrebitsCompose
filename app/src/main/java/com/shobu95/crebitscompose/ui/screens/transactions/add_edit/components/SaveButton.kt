@@ -3,6 +3,7 @@ package com.shobu95.crebitscompose.ui.screens.transactions.add_edit.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -11,7 +12,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import com.shobu95.crebitscompose.ui.screens.transactions.add_edit.AddEditTransactionViewModel
 import com.shobu95.crebitscompose.ui.screens.transactions.add_edit.state.AddEditTransactionEvent
-import com.shobu95.crebitscompose.ui.theme.ThemeBlack
 import com.shobu95.crebitscompose.ui.theme.ThemeWhite
 
 @Composable
@@ -35,7 +35,7 @@ fun SaveButton(
             },
             shape = RectangleShape,
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = ThemeBlack,
+                backgroundColor = MaterialTheme.colors.primaryVariant,
                 contentColor = ThemeWhite
             ),
             modifier = buttonModifier.align(Alignment.BottomCenter),

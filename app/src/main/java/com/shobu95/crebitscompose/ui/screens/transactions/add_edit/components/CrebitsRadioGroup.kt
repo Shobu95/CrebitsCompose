@@ -41,7 +41,7 @@ fun CrebitsRadioGroup(
                     .padding(horizontal = 2.dp)
                     .background(
                         if (text == typeState) {
-                            Color.Black
+                            MaterialTheme.colors.primaryVariant
                         } else {
                             Color.LightGray
                         }

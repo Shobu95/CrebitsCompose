@@ -5,4 +5,4 @@ import androidx.compose.ui.graphics.Color
 val ThemeBlack = Color.Black
 val ThemeWhite = Color.White
 val ThemeBackgroundLight = Color(0xfafafaff)
-val ThemeBackgroundDark = Color(0xFA141414)
+val ThemeBackgroundDark = Color(0xFA2B2A2A)
