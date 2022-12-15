@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.lifecycle.lifecycleScope
 import com.shobu95.crebitscompose.R
 import com.shobu95.crebitscompose.ui.screens.home.HomeActivity
 import com.shobu95.crebitscompose.ui.theme.CrebitsComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -36,12 +38,16 @@ fun SplashScreenPreview() {
     }
 }
 
+@AndroidEntryPoint
 class SplashActivity : ComponentActivity() {
+
+    val viewModel: SplashViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.window.statusBarColor = ContextCompat.getColor(this, R.color.black)
         setContent {
-            CrebitsComposeTheme {
+            CrebitsComposeTheme(viewModel.isDarkTheme) {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
