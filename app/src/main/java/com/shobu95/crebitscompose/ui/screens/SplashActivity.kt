@@ -5,9 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -25,7 +25,6 @@ import androidx.lifecycle.lifecycleScope
 import com.shobu95.crebitscompose.R
 import com.shobu95.crebitscompose.ui.screens.home.HomeActivity
 import com.shobu95.crebitscompose.ui.theme.CrebitsComposeTheme
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -38,16 +37,14 @@ fun SplashScreenPreview() {
     }
 }
 
-@AndroidEntryPoint
 class SplashActivity : ComponentActivity() {
 
-    val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.window.statusBarColor = ContextCompat.getColor(this, R.color.black)
         setContent {
-            CrebitsComposeTheme(viewModel.isDarkTheme) {
+            CrebitsComposeTheme() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -81,7 +78,10 @@ fun SplashScreen() {
             .background(color = MaterialTheme.colors.surface),
         contentAlignment = Alignment.Center
     ) {
-        val splashIcon = painterResource(id = R.drawable.crebits_main_icon)
+        val splashIcon =
+            if (isSystemInDarkTheme()) painterResource(id = R.drawable.crebits_main_icon_dark) else painterResource(
+                id = R.drawable.crebits_main_icon
+            )
         Image(
             painter = splashIcon,
             contentDescription = "splash icon",

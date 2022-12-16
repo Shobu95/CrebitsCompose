@@ -22,7 +22,7 @@ class HomeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         this.window.statusBarColor = ContextCompat.getColor(this, R.color.black)
         setContent {
-            CrebitsComposeTheme {
+            CrebitsComposeTheme() {
                 HomeScreen()
             }
         }
