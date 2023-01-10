@@ -8,9 +8,7 @@ import com.shobu95.crebitscompose.domain.use_cases.transaction.TransactionUseCas
 import com.shobu95.crebitscompose.ui.screens.transactions.list.state.TransactionEvent
 import com.shobu95.crebitscompose.ui.screens.transactions.list.state.TransactionListState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,7 +21,6 @@ class TransactionViewModel @Inject constructor(
     private val _state = mutableStateOf(TransactionListState())
     val state: State<TransactionListState> = _state
 
-    private var getTransactionsJob: Job? = null
 
     init {
         getTransactions()
@@ -44,14 +41,13 @@ class TransactionViewModel @Inject constructor(
     }
 
     private fun getTransactions() {
-
-        getTransactionsJob?.cancel()
-        getTransactionsJob = transactionUseCases.getAllTransactions()
-            .onEach { transactions ->
+        viewModelScope.launch {
+            transactionUseCases.getAllTransactions().collectLatest {
                 _state.value = state.value.copy(
-                    transactions = transactions
+                    transactions = it
                 )
-            }.launchIn(viewModelScope)
+            }
+        }
     }
 
 
