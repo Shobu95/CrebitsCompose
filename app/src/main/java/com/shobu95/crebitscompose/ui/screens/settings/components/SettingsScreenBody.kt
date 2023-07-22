@@ -8,13 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SettingsScreenBody() {
+fun SettingsScreenBody(onDarkModeChanged: (isDark: Boolean) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(14.dp)
     ) {
-        DarkModeOption()
+        DarkModeOption(onDarkModeChanged)
         CurrencyOption()
     }
 

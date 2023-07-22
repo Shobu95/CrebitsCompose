@@ -6,6 +6,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.shobu95.crebitscompose.ui.navigation.HomeScreenItem
 import com.shobu95.crebitscompose.ui.screens.settings.components.SettingsScreenBody
 import com.shobu95.crebitscompose.ui.shared.CrebitsTopAppBar
@@ -19,7 +20,10 @@ fun SettingsPreview() {
 
 
 @Composable
-fun SettingsScreen(@StringRes title: Int) {
+fun SettingsScreen(
+    @StringRes title: Int,
+    viewModel: SettingsViewModel = hiltViewModel()
+) {
     Scaffold(
         backgroundColor = MaterialTheme.colors.surface,
         topBar = {
@@ -29,6 +33,8 @@ fun SettingsScreen(@StringRes title: Int) {
             ) {}
         }
     ) {
-        SettingsScreenBody()
+        SettingsScreenBody {
+            viewModel.onDarkModeChanged(it)
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.shobu95.crebitscompose.core.di
 
 import android.app.Application
+import android.app.UiModeManager
 import androidx.room.Room
 import com.shobu95.crebits.backend.local.TransactionDatabase
 import com.shobu95.crebitscompose.data.repository.TransactionRepository
@@ -9,6 +10,8 @@ import com.shobu95.crebitscompose.domain.use_cases.dashboard.CurrentMonthDeficit
 import com.shobu95.crebitscompose.domain.use_cases.dashboard.CurrentMonthTransactionsUseCase
 import com.shobu95.crebitscompose.domain.use_cases.dashboard.DashboardUseCases
 import com.shobu95.crebitscompose.domain.use_cases.dashboard.GraphDataUseCase
+import com.shobu95.crebitscompose.domain.use_cases.settings.DarkModeUseCase
+import com.shobu95.crebitscompose.domain.use_cases.settings.SettingsUseCases
 import com.shobu95.crebitscompose.domain.use_cases.transaction.*
 import dagger.Module
 import dagger.Provides
@@ -57,6 +60,22 @@ class AppModule {
             getGraphData = GraphDataUseCase(),
             getCurrentMonthDeficit = CurrentMonthDeficitUseCase(),
             getCurrentMonthTransactions = CurrentMonthTransactionsUseCase()
+        )
+    }
+
+
+    @Provides
+    @Singleton
+    fun providesUiModeManager(context: Application): UiModeManager {
+        return UiModeManager()
+    }
+
+
+    @Provides
+    @Singleton
+    fun providesSettingsUseCases(uiModeManager: UiModeManager): SettingsUseCases {
+        return SettingsUseCases(
+            darkModeUseCase = DarkModeUseCase(uiModeManager)
         )
     }
 

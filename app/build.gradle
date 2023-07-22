@@ -8,11 +8,12 @@ plugins {
 
 android {
     compileSdk 32
+    namespace 'com.shobu95.crebitscompose'
 
     defaultConfig {
         applicationId "com.shobu95.crebitscompose"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
